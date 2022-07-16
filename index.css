@@ -179,21 +179,25 @@ time {
 }
 
 #hrefbox {
-  grid-row-start: 5;
   transform: scale(0);
   opacity: 0;
-  overflow: hidden;
+  transition: 0.25s cubic-bezier(0.65, 0.05, 0.1, 1);
   border-radius: 10px;
+}
+
+.rightMenu {
+  grid-row-start: 5;
+  overflow: hidden;
+
   display: flex;
   flex-direction: column;
   font-size: 1.3em;
   color: var(--searchTaB);
   background-color: rgba(var(--searchColor), var(--searchColor), var(--searchColor), 0.9);
-  list-style: none;
-  transition: 0.25s cubic-bezier(0.65, 0.05, 0.1, 1);
+  z-index: 1;
 }
 
-#hrefbox button {
+.rightMenu button {
   color: var(--searchTaB);
   background-color: transparent;
   border: 0;
@@ -207,15 +211,18 @@ time {
   -moz-user-select: none;
 }
 
-#hrefbox button:hover {
+.rightMenu button:hover {
   background-color: var(--libg);
 }
 
-#hrefbox button i {
+.rightMenu button > :first-child {
   grid-column-start: 1;
+  width: 100%;
+  height: 100%;
+  fill: var(--searchTaB);
 }
 
-#hrefbox button p {
+.rightMenu button p {
   grid-column-start: 3;
   text-align: left;
 }
@@ -252,12 +259,16 @@ time {
 }
 
 .tiles {
+  position: relative;
   display: grid;
   grid-template-rows: 70px 1fr;
   width: 70px;
   height: 100px;
   margin: 30px 15px 0;
-  overflow: hidden;
+}
+
+.tiles a {
+  outline: none !important;
 }
 
 .tiles .loges {
@@ -265,10 +276,30 @@ time {
   height: 100%;
   border-radius: 20%;
 }
+
 .tiles p {
   display: block;
   margin: auto;
 }
+
+@keyframes aswing {
+  0% {
+    transform: translateX(0deg);
+  }
+  20% {
+    transform: translateX(-10deg);
+  }
+  40% {
+    transform: translateX(0deg);
+  }
+  80% {
+    transform: translateX(10deg);
+  }
+  100% {
+    transform: translateX(0deg);
+  }
+}
+
 #newTileCard {
   width: 300px;
   height: 530px;
@@ -290,13 +321,23 @@ time {
   margin: 20px 40px;
 }
 
+.ceeeeee {
+  color: #eeeeee;
+}
+
 .f16 {
   font-size: 16px;
+}
+
+.c5e5e5e {
   color: #5e5e5e;
 }
 
 .f24 {
   font-size: 24px;
+}
+
+.c3e3e3e {
   color: #3e3e3e;
 }
 
@@ -391,4 +432,8 @@ time {
   margin: 0 !important;
   border: 0;
   background-color: rgba(0, 0, 0, 0.4);
+}
+
+#tilesRightMenu {
+  position: fixed;
 }

@@ -27,8 +27,8 @@
     <div class="search-box">
       <button
         id="setBrowser"
-        onclick="setBrowserListTandL()"
-        onblur="hrefBstate = 'none'"
+        onclick="showhrefB()"
+        onblur="hrefB.style='display: none; transform: scale(0);opacity: 0;'"
         onfocus="document.documentElement.style.setProperty('--BgBlur', '3px');"
         onblur="document.documentElement.style.setProperty('--BgBlur', '0px');"
       >
@@ -48,7 +48,12 @@
         <i class="iconfont icon-search1187938easyiconnet"></i>
       </div>
     </div>
-    <div id="hrefbox" style="display: none">
+    <div
+      id="hrefbox"
+      style="display: none"
+      class="rightMenu"
+      onblur="document.documentElement.style.setProperty('--BgBlur', '0px');"
+    >
       <button shref="https://www.bing.com/search?q=" class="href">
         <i class="iconfont icon-bing"></i>
         <p>bing</p>
@@ -62,39 +67,74 @@
         <p>baidu</p>
       </button>
     </div>
+    <div id="tilesRightMenu" class="rightMenu" style="display: none">
+      <button onclick="delTile()">
+        <?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+        <svg
+          t="1657889389447"
+          class="icon"
+          viewBox="0 0 1024 1024"
+          version="1.1"
+          xmlns="http://www.w3.org/2000/svg"
+          p-id="2262"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          width="200"
+          height="200"
+        >
+          <defs><style type="text/css"></style></defs>
+          <path
+            d="M768 384c-19.2 0-32 12.8-32 32l0 377.6c0 25.6-19.2 38.4-38.4 38.4L326.4 832c-25.6 0-38.4-19.2-38.4-38.4L288 416C288 396.8 275.2 384 256 384S224 396.8 224 416l0 377.6c0 57.6 44.8 102.4 102.4 102.4l364.8 0c57.6 0 102.4-44.8 102.4-102.4L793.6 416C800 396.8 787.2 384 768 384z"
+            p-id="2263"
+          ></path>
+          <path
+            d="M460.8 736l0-320C460.8 396.8 448 384 435.2 384S396.8 396.8 396.8 416l0 320c0 19.2 12.8 32 32 32S460.8 755.2 460.8 736z"
+            p-id="2264"
+          ></path>
+          <path
+            d="M627.2 736l0-320C627.2 396.8 608 384 588.8 384S563.2 396.8 563.2 416l0 320C563.2 755.2 576 768 588.8 768S627.2 755.2 627.2 736z"
+            p-id="2265"
+          ></path>
+          <path
+            d="M832 256l-160 0L672 211.2C672 166.4 633.6 128 588.8 128L435.2 128C390.4 128 352 166.4 352 211.2L352 256 192 256C172.8 256 160 268.8 160 288S172.8 320 192 320l640 0c19.2 0 32-12.8 32-32S851.2 256 832 256zM416 211.2C416 198.4 422.4 192 435.2 192l153.6 0c12.8 0 19.2 6.4 19.2 19.2L608 256l-192 0L416 211.2z"
+            p-id="2266"
+          ></path>
+        </svg>
+        <p>删除</p>
+      </button>
+    </div>
     <div class="tileBox">
       <div class="tiles">
         <a href="https://www.bilibili.com/" target="_blank">
           <img src="./loges/bilibili.svg" alt="" class="loges" />
         </a>
-        <p>Bilibili</p>
+        <p class="f16 ceeeeee">Bilibili</p>
       </div>
       <div class="tiles">
         <a href="https://www.github.com/" target="_blank">
           <img src="./loges/github.svg" alt="" class="loges" />
         </a>
-        <p>Github</p>
+        <p class="f16 ceeeeee">Github</p>
       </div>
       <div class="tiles" add="add">
         <a id="AddTiles" href="#">
           <img src="./imgs/add.svg" alt="添加" class="loges" />
         </a>
-        <p>添加图标</p>
+        <p class="f16 ceeeeee">添加图标</p>
         <div id="full"></div>
         <div id="newTileCard">
           <div>
-            <p class="f24">网址</p>
+            <p class="f24 c3e3e3e">网址</p>
             <input type="text" id="tileHref" class="input" placeholder="https://" />
           </div>
           <div>
-            <p class="f24">图标</p>
+            <p class="f24 c3e3e3e">图标</p>
             <div>
               <div class="logeDemoBox">
                 <div id="logeDemo" class="text"><p class="f32">A</p></div>
                 <input type="color" id="setLogeColor" />
                 <div id="btnSLC"></div>
               </div>
-              <p class="f16">文字图标</p>
+              <p class="f16 c5e5e5e">文字图标</p>
               <input type="text" id="textLoge" class="input" onblur="SetLogeDemoText()" />
             </div>
           </div>

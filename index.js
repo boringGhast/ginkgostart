@@ -1,18 +1,14 @@
+time();
 let sIcon = document.getElementById("search-ico");
 let searchIN = document.getElementById("search");
 let setB = document.getElementById("setBrowser");
 let hrefB = document.getElementById("hrefbox");
 let hrefs = document.querySelectorAll(".href");
 let shref = "https://www.bing.com/search?q=";
-let hrefBstate = "0";
-let BliLeft, BliTop;
-
-let i = 0;
 
 // 设置切换搜索引擎
 for (let i = 0; i < hrefs.length; i++) {
     hrefs[i].addEventListener("focus", function () {
-        console.log(this.getAttribute("shref"));
         shref = this.getAttribute("shref");
         sIcon.className = this.firstChild.nextElementSibling.className;
         searchIN.focus();
@@ -26,10 +22,6 @@ searchIN.addEventListener("keyup", function (event) {
         search();
     }
 });
-
-BliLeft = getElementLeft(setB) - 20;
-BliTop = getElementTop(setB) + 55;
-time();
 
 //设置时间
 function time() {
@@ -76,18 +68,12 @@ function getElementTop(element) {
     return actualTop;
 }
 
-function setBrowserListTandL() {
-    hrefBstate = "1";
-    BliLeft = getElementLeft(setB) - 20;
-    BliTop = getElementTop(setB) + 55;
-}
-
-function hidOrshowhrefB() {
-    let mBliTop = String(BliTop);
-    let mBliLeft = String(BliLeft);
-    let pos = "position: fixed; " + "top: " + mBliTop + "px;" + "left:" + mBliLeft + "px;";
+function showhrefB() {
+    let hrefBLeft = (getElementLeft(setB) - 20).toString();
+    let hrefBTop = (getElementTop(setB) + 55).toString();
+    let pos = "position: fixed; " + "top: " + hrefBTop + "px;" + "left:" + hrefBLeft + "px;";
     hrefB.style =
-        "display: block; transform: scale(" + hrefBstate + ");" + "opacity: " + hrefBstate + ";" + pos;
+        "display: block; transform: scale(1);" + "opacity: 1;" + pos;
 }
 
 function search() {
@@ -107,28 +93,27 @@ let changeList = {
 function moonOrDay() {
     function change() {
         for (let i in changeList) {
-            console.log(i);
+            document.documentElement.style.setProperty(i, changeList[i][mOrd]);
         }
     }
     if (mOrd === 1) {
         mOrd = 0;
-        document.documentElement.style.setProperty("--timeColor", "#aaaaaa");
     } else {
         mOrd = 1;
+
     }
+    change();
 }
 
 let add =
     '<div class="tiles">' + getAddTilesElement().innerHTML + '</div>';
 
-
-let logeDemo, textLoge, tileHref, tileName, tilesBox, setLogeDemoColor;
-logeDemo = document.getElementById("logeDemo").children[0];
-textLoge = document.getElementById("textLoge");
-tileHref = document.getElementById("tileHref");
-tileName = document.getElementById("tileName");
+let tileHref, tileName, tilesBox, setLogeDemoColor;
 tilesBox = document.getElementsByClassName("tileBox")[0];
 setLogeDemoColor = document.getElementById("setLogeColor");
+// 如果本地储存有tiles数据则赋值给tilesBox.innerHTML
+tilesBox.innerHTML = (localStorage.getItem("tiles") || tilesBox.innerHTML);
+
 //为AddTiles添加事件
 let AddTiles, full;
 AddTiles = document.querySelector("#AddTiles");
@@ -146,6 +131,7 @@ function newTileCard_off_on() {
     if (full_display == "none") {
         newTileCard.style.display = "flex";
         full.style.display = "flex";
+
     } else {
         newTileCard.style.display = "none";
         full.style.display = "none";
@@ -154,13 +140,14 @@ function newTileCard_off_on() {
 
 
 function SetLogeDemoText() {
-    if (textLoge.value.length > 3) {
-        textLoge.value = textLoge.value.substring(0, 3);
-    }
-    logeDemo.innerText = textLoge.value;
+    let textLoge = document.getElementById("textLoge");
+    textLoge.value = textLoge.value.substring(0, 3);
+    document.getElementById("logeDemo").innerHTML = '<p class="f32">' + textLoge.value + '</p>';
 }
 
 function addTile() {
+    tileHref = document.getElementById("tileHref");
+    tileName = document.getElementById("tileName");
     if (tileHref.value == "" || tileName.value == "") {
         alert("网址或名称不能为空");
         return;
@@ -178,44 +165,80 @@ function addTile() {
         '<div class="text" style="background:' +
         color +
         ';"><p class="f32">' +
-        logeDemo.innerText +
-        "</p></div></a><p>" +
+        document.getElementById("textLoge").value +
+        '</p></div></a><p class="ceeeeee">' +
         tileName.value +
         "</p></div>";
     tilesBox.innerHTML += newTile + add;
     tilesBox.removeChild(getAddTilesElement());
     tilesBox.lastChild.setAttribute("add", "add");
+    localStorage.setItem("tiles", tilesBox.innerHTML)
     // 重新添加add图标后重新赋值变量
     AddTiles = document.querySelector("#AddTiles");
     AddTiles.addEventListener("click", newTileCard_off_on);
     full = document.querySelector("#full");
     full.addEventListener("click", newTileCard_off_on);
-    logeDemo = document.getElementById("logeDemo").children[0];
-    textLoge = document.getElementById("textLoge");
-    tileHref = document.getElementById("tileHref");
-    tileName = document.getElementById("tileName");
-    tilesBox = document.getElementsByClassName("tileBox")[0];
     setLogeDemoColor = document.getElementById("setLogeColor");
+    setTilesRight()
 }
 
 function getAddTilesElement() {
     let tiles = document.getElementsByClassName("tiles");
-    for (const i of tiles) {
+    for (let i of tiles) {
         if (i.getAttribute("add") == "add") {
             return i;
         }
     }
 }
 
+// 设置tiles的右键菜单
+let rightOf;
+function setTilesRight() {
+    let tiles = document.getElementsByClassName("tiles");
+
+    for (let i of tiles) {
+        if (i === getAddTilesElement()) {
+            continue
+        }
+        i.oncontextmenu = function (e) {
+            rightOf = this;
+            //取消默认的浏览器自带右键 很重要！！
+            e.preventDefault();
+
+            //获取我们自定义的右键菜单
+            let menu = document.querySelector("#tilesRightMenu");
+
+            //根据事件对象中鼠标点击的位置，进行定位
+            menu.style.left = e.clientX + 'px';
+            menu.style.top = e.clientY + 'px';
+
+            //改变自定义菜单的宽，让它显示出来
+            menu.style.display = 'block';
+        }
+    }
+}
+
+setTilesRight();
+
+//关闭右键菜单，很简单
+window.onclick = function () {
+    //用户触发click事件就可以关闭了，因为绑定在window上，按事件冒泡处理，不会影响菜单的功能
+    document.querySelector('#tilesRightMenu').style.display = "none";
+}
+
+function delTile() {
+    rightOf.remove();
+    localStorage.setItem("tiles", tilesBox.innerHTML)
+}
+
 document.getElementById("btnSLC").onclick = function () {
     setLogeDemoColor.click();
 };
-
+// localStorage.removeItem("tiles");
 window.onload = function () {
     setInterval(
         "document.documentElement.style.setProperty('--logeDemoColor', setLogeDemoColor.value);",
         50
     );
     setInterval("time()", 1000);
-    setInterval("hidOrshowhrefB()", 10);
 };
