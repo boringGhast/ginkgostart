@@ -3,13 +3,6 @@
   padding: 0;
 }
 
-#b1 {
-  background: url(./imgs/BG1.jpg) no-repeat -9999px -9999px;
-}
-#b2 {
-  background: url(./imgs/BG2.jpg) no-repeat -9999px -9999px;
-}
-
 @font-face {
   font-family: "iconfont";
   src: url("iconfont.woff2?t=1654263403269") format("woff2"),
@@ -17,16 +10,20 @@
     url("iconfont.ttf?t=1654263403269") format("truetype"),
     url("iconfont.svg?t=1654263403269#iconfont") format("svg");
 }
+
 :root {
   --fonts-light: consolas, "Microsoft Yahei Light", "Microsoft Yahei", "PingFang SC",
     "Helvetica Neue", Helvetica, Tahoma, Arial, sans-serif;
   --timeColor: #eeeeee;
   --searchColor: 255;
   --searchTaB: black;
-  --bgimg: url("./imgs/BG1.jpg");
+  --bgimg: url("./imgs/BG1.webp"), url("./imgs/BG1.png");
   --libg: #66666611;
   --BgBlur: 0px;
   --logeDemoColor: #000;
+  --createColor: linear-gradient(10deg, #406eb8, #b1eaf4);
+  --createHoverColor: linear-gradient(10deg, #21385d, #87acb3);
+  --addColor: #1b1b1b;
 }
 body {
   display: flex;
@@ -117,17 +114,24 @@ time {
   width: 230px;
   height: 50px;
   border-radius: 50px;
-  transition: all 0.5s;
+  transition: all 0.5s cubic-bezier(0.45, 0.05, 0.1, 1);
+}
+@media screen and (min-width: 450px) {
+  .search-box:hover {
+    width: 50vw;
+  }
+
+  .search-box:focus-within {
+    width: 50vw;
+  }
 }
 
 .search-box:hover {
   background-color: rgba(var(--searchColor), var(--searchColor), var(--searchColor), 0.5);
-  width: 50vw;
 }
 
 .search-box:focus-within {
   background-color: rgba(var(--searchColor), var(--searchColor), var(--searchColor), 0.9);
-  width: 50vw;
   backdrop-filter: blur(0);
 }
 
@@ -145,7 +149,7 @@ time {
 }
 
 .search-btn,
-#setBrowser {
+#setSearchHref {
   opacity: 0;
   border: 0;
   width: 50px;
@@ -159,36 +163,21 @@ time {
   align-items: center;
 }
 
-#setBrowser i.iconfont.icon-bing {
-  font-size: 2em;
-}
-
-#setBrowser i.iconfont {
-  font-size: 1.8em;
-}
-
-.search-btn i.iconfont,
-#setBrowser i.iconfont.icon-baidu {
-  font-size: 1.5em;
-}
-
 .search-box:focus-within > .search-btn,
-.search-box:focus-within > #setBrowser {
+.search-box:focus-within > #setSearchHref {
   opacity: 1;
   cursor: pointer;
 }
 
 #hrefbox {
-  transform: scale(0);
-  opacity: 0;
-  transition: 0.25s cubic-bezier(0.65, 0.05, 0.1, 1);
+  position: fixed;
+  transition: all 0.25s cubic-bezier(0.55, 0.05, 0.1, 1);
   border-radius: 10px;
 }
 
-.rightMenu {
+.menu {
   grid-row-start: 5;
   overflow: hidden;
-
   display: flex;
   flex-direction: column;
   font-size: 1.3em;
@@ -197,7 +186,7 @@ time {
   z-index: 1;
 }
 
-.rightMenu button {
+.menu button {
   color: var(--searchTaB);
   background-color: transparent;
   border: 0;
@@ -211,40 +200,20 @@ time {
   -moz-user-select: none;
 }
 
-.rightMenu button:hover {
+.menu button:hover {
   background-color: var(--libg);
 }
 
-.rightMenu button > :first-child {
+.menu button > :first-child {
   grid-column-start: 1;
   width: 100%;
   height: 100%;
   fill: var(--searchTaB);
 }
 
-.rightMenu button p {
+.menu button p {
   grid-column-start: 3;
   text-align: left;
-}
-
-#hrefbox .icon-bing {
-  font-size: 1em;
-  position: relative;
-  top: 1px;
-}
-
-#hrefbox .icon-baidu {
-  font-size: 0.7em;
-  margin: 2px;
-  position: relative;
-  top: 2px;
-}
-
-#hrefbox .icon-google {
-  font-size: 0.9em;
-  margin: 1px;
-  position: relative;
-  top: 2px;
 }
 
 .tileBox {
@@ -282,27 +251,8 @@ time {
   margin: auto;
 }
 
-@keyframes aswing {
-  0% {
-    transform: translateX(0deg);
-  }
-  20% {
-    transform: translateX(-10deg);
-  }
-  40% {
-    transform: translateX(0deg);
-  }
-  80% {
-    transform: translateX(10deg);
-  }
-  100% {
-    transform: translateX(0deg);
-  }
-}
-
 #newTileCard {
   width: 300px;
-  height: 530px;
   background-color: rgba(var(--searchColor), var(--searchColor), var(--searchColor), 0.8);
   border-radius: 30px;
   position: fixed;
@@ -314,7 +264,6 @@ time {
   justify-content: space-evenly;
   overflow: hidden;
   transition: opacity 0.5s;
-  cursor: pointer;
 }
 
 #newTileCard > * {
@@ -329,16 +278,16 @@ time {
   font-size: 16px;
 }
 
-.c5e5e5e {
-  color: #5e5e5e;
+.add2 {
+  color: #747474;
 }
 
 .f24 {
   font-size: 24px;
 }
 
-.c3e3e3e {
-  color: #3e3e3e;
+.add1 {
+  color: var(--addColor);
 }
 
 .f32 {
@@ -359,14 +308,15 @@ time {
 
 .input {
   width: 100%;
-  background: none;
+  background-color: transparent !important;
   border: none;
   outline: none;
   margin-left: -20px;
   font-size: 16px;
   padding: 0 20px;
-  border-bottom: #000 solid 2px;
+  border-bottom: var(--searchTaB) solid 2px;
   text-align: start;
+  color: var(--searchTaB);
 }
 
 .text {
@@ -384,34 +334,36 @@ time {
 .logeDemoBox {
   display: flex;
   flex-direction: row;
-  gap: 20px;
+  gap: 10px;
 }
 
-#setLogeColor {
-  position: absolute;
-  left: 145px;
-  top: 210px;
+#setLogeColor,
+#setLogeColor::-webkit-color-swatch {
+  border: none;
+  background: transparent;
   width: 0;
   height: 0;
 }
 
 #btnSLC {
+  content: "";
   width: 30px;
   height: 30px;
   border-radius: 50%;
   background-image: url(./imgs/color.svg);
+  background-color: transparent;
+  color: transparent;
   background-size: cover;
   z-index: 1;
+  cursor: pointer;
 }
 
 #create {
   color: #fff;
-  position: relative;
-  top: 15px;
   margin: 0;
   width: 100%;
   height: 50px;
-  background-image: linear-gradient(10deg, #406eb8, #b1eaf4);
+  background-image: var(--createColor);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -419,7 +371,7 @@ time {
 
 #create:hover {
   color: #bbb;
-  background-image: linear-gradient(10deg, #21385d, #87acb3);
+  background-image: var(--createHoverColor);
 }
 
 #full {
@@ -432,6 +384,10 @@ time {
   margin: 0 !important;
   border: 0;
   background-color: rgba(0, 0, 0, 0.4);
+}
+
+a {
+  text-decoration: none;
 }
 
 #tilesRightMenu {
