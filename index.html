@@ -9,13 +9,8 @@
     <link rel="shortcut icon" href="logo.png" type="image/x-icon" />
     <link rel="icon" href="logo.png" type="image/x-icon" />
     <link rel="stylesheet" href="index.css" />
-    <!-- <link rel="stylesheet" href="https://g.alicdn.com/thx/cube/1.3.2/cube.min.css" /> -->
     <link rel="stylesheet" href="./iconfont/iconfont.css" />
     <script src="./iconfont/iconfont.js"></script>
-    <!-- jQuery -->
-    <!-- <script src="https://a1.alicdn.com/oss/uploads/2018/12/26/7bfddb60-08e8-11e9-9b04-53e73bb6408b.js"></script> -->
-    <!-- 代码高亮 -->
-    <!-- <script src="https://a1.alicdn.com/oss/uploads/2018/12/26/a3f714d0-08e6-11e9-8a15-ebf944d7534c.js"></script> -->
   </head>
   <body>
     <label class="switch">
@@ -30,6 +25,7 @@
         onblur="hrefB.style='transform: scale(0);'+ pos"
         onfocus="document.documentElement.style.setProperty('--BgBlur', '3px');"
         onblur="document.documentElement.style.setProperty('--BgBlur', '0px');"
+        aria-label="setSearchHref"
       >
         <i class="iconfont icon-bing" id="search-ico"></i>
       </button>
@@ -107,13 +103,13 @@
     </div>
     <div class="tileBox">
       <div class="tiles">
-        <a href="https://www.bilibili.com/" target="_blank">
+        <a href="https://www.bilibili.com/" target="_blank" aria-label="Bilibili">
           <img src="./loges/bilibili.svg" alt="" class="loges" />
         </a>
         <p class="f16 ceeeeee">Bilibili</p>
       </div>
       <div class="tiles">
-        <a href="https://www.github.com/" target="_blank">
+        <a href="https://www.github.com/" target="_blank" aria-label="Github">
           <img src="./loges/github.svg" alt="" class="loges" />
         </a>
         <p class="f16 ceeeeee">Github</p>

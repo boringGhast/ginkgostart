@@ -161,7 +161,9 @@ function addTile() {
     '<div class="tiles">' +
     '<a href="' +
     href +
-    '" target="_blank">' +
+    '" target="_blank" aria-label="' +
+    tileName.value +
+    '">' +
     '<div class="text" style="background:' +
     color +
     ';"><p class="f32">' +
