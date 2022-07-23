@@ -4,7 +4,7 @@
 }
 
 @font-face {
-  font-family: "iconfont";
+  font-family: "iconfont", "Microsoft Yahei";
   src: url("iconfont.woff2?t=1654263403269") format("woff2"),
     url("iconfont.woff?t=1654263403269") format("woff"),
     url("iconfont.ttf?t=1654263403269") format("truetype"),
