@@ -80,7 +80,7 @@ function showhrefB() {
 }
 
 // 设置深浅模式切换 深色在前
-let mOrd = 1;
+let nightOrDayMode = 1;
 let changeList = {
   "--timeColor": ["#aaaaaa", "#eeeeee"],
   "--searchColor": ["100", "255"],
@@ -92,16 +92,16 @@ let changeList = {
   "--libg": ["#eeeeee22", "#66666611"],
   "--addColor": ["#dddddd", "#1b1b1b"],
 };
-function moonOrDay() {
+function nightOrDay() {
   function change() {
     for (let i in changeList) {
-      document.documentElement.style.setProperty(i, changeList[i][mOrd]);
+      document.documentElement.style.setProperty(i, changeList[i][nightOrDayMode]);
     }
   }
-  if (mOrd === 1) {
-    mOrd = 0;
+  if (nightOrDayMode === 1) {
+    nightOrDayMode = 0;
   } else {
-    mOrd = 1;
+    nightOrDayMode = 1;
   }
   change();
 }
