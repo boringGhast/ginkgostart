@@ -82,13 +82,9 @@ function showhrefB() {
 // 设置深浅模式切换 深色在前
 let nightOrDayMode = 1;
 let changeList = {
-  "--timeColor": ["#aaaaaa", "#eeeeee"],
-  "--searchColor": ["100", "255"],
-  "--searchTaB": ["#bbbbbb", "black"],
-  "--bgimg": [
-    'url("./imgs/BG2.webp"),url("./imgs/BG2.png")',
-    'url("./imgs/BG1.webp"),url("./imgs/BG1.png")',
-  ],
+  "--timeColor": ["#444444", "#e3e3e3"],
+  "--searchColor": ["50", "255"],
+  "--searchTaB": ["#eeeeee", "black"],
   "--libg": ["#eeeeee22", "#66666611"],
   "--addColor": ["#dddddd", "#1b1b1b"],
 };
@@ -106,13 +102,13 @@ function nightOrDay() {
   change();
 }
 
-let add = '<div class="tiles">' + getAddTilesElement().innerHTML + "</div>";
+let add = '<div class="tile">' + getAddTilesElement().innerHTML + "</div>";
 
-let tileHref, tileName, tilesBox, setLogeDemoColor;
-tilesBox = document.getElementsByClassName("tileBox")[0];
+let tileHref, tileName, tiles, setLogeDemoColor;
+tiles = document.getElementsByClassName("tiles")[0];
 setLogeDemoColor = document.getElementById("setLogeColor");
 // 如果本地储存有tiles数据则赋值给tilesBox.innerHTML
-tilesBox.innerHTML = localStorage.getItem("tiles") || tilesBox.innerHTML;
+tiles.innerHTML = localStorage.getItem("tiles") || tiles.innerHTML;
 
 //为AddTiles添加事件
 let AddTiles, full;
@@ -158,7 +154,7 @@ function addTile() {
       ? "https://" + tileHref.value
       : tileHref.value;
   let newTile =
-    '<div class="tiles">' +
+    '<div class="tile">' +
     '<a href="' +
     href +
     '" target="_blank" aria-label="' +
@@ -171,10 +167,10 @@ function addTile() {
     '</p></div></a><p class="ceeeeee">' +
     tileName.value +
     "</p></div>";
-  tilesBox.innerHTML += newTile + add;
-  tilesBox.removeChild(getAddTilesElement());
-  tilesBox.lastChild.setAttribute("add", "add");
-  localStorage.setItem("tiles", tilesBox.innerHTML);
+  tiles.innerHTML += newTile + add;
+  tiles.removeChild(getAddTilesElement());
+  tiles.lastChild.setAttribute("add", "add");
+  localStorage.setItem("tiles", tiles.innerHTML);
   // 重新添加add图标后重新赋值变量
   AddTiles = document.querySelector("#AddTiles");
   AddTiles.addEventListener("click", newTileCard_off_on);
@@ -184,7 +180,7 @@ function addTile() {
 }
 
 function getAddTilesElement() {
-  let tiles = document.getElementsByClassName("tiles");
+  let tiles = document.getElementsByClassName("tile");
   for (let i of tiles) {
     if (i.getAttribute("add") == "add") {
       return i;
@@ -195,7 +191,7 @@ function getAddTilesElement() {
 // 设置tiles的右键菜单
 let rightOf;
 function setTilesRight() {
-  let tiles = document.getElementsByClassName("tiles");
+  let tiles = document.getElementsByClassName("tile");
 
   for (let i of tiles) {
     if (i === getAddTilesElement()) {
@@ -229,7 +225,7 @@ window.onclick = function () {
 
 function delTile() {
   rightOf.remove();
-  localStorage.setItem("tiles", tilesBox.innerHTML);
+  localStorage.setItem("tiles", tiles.innerHTML);
 }
 
 document.getElementById("btnSLC").onclick = function () {

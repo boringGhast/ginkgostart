@@ -23,8 +23,6 @@
         id="setSearchHref"
         onclick="showhrefB()"
         onblur="hrefB.style='transform: scale(0);'+ pos"
-        onfocus="document.documentElement.style.setProperty('--BgBlur', '3px');"
-        onblur="document.documentElement.style.setProperty('--BgBlur', '0px');"
         aria-label="setSearchHref"
       >
         <i class="iconfont icon-bing" id="search-ico"></i>
@@ -36,19 +34,14 @@
         required
         autocomplete="off"
         disableautocomplete
-        onfocus="this.placeholder='';document.documentElement.style.setProperty('--BgBlur', '3px');"
-        onblur="this.placeholder='Type to search...';document.documentElement.style.setProperty('--BgBlur', '0px');"
+        onfocus="this.placeholder='';"
+        onblur="this.placeholder='Type to search...';"
       />
       <div class="search-btn" onclick="search()">
         <i class="iconfont icon-search1187938easyiconnet"></i>
       </div>
     </div>
-    <div
-      id="hrefbox"
-      style="transform: scale(0)"
-      class="menu"
-      onblur="document.documentElement.style.setProperty('--BgBlur', '0px');"
-    >
+    <div id="hrefbox" style="transform: scale(0)" class="menu">
       <button shref="https://www.bing.com/search?q=" class="href" onfocus="setSearchHref(this)">
         <i class="iconfont icon-bing"></i>
         <p>bing</p>
@@ -101,20 +94,20 @@
         <p>删除</p>
       </button>
     </div>
-    <div class="tileBox">
-      <div class="tiles">
+    <div class="tiles">
+      <div class="tile">
         <a href="https://www.bilibili.com/" target="_blank" aria-label="Bilibili">
-          <img src="./loges/bilibili.svg" alt="" class="loges" />
+          <img src="./imgs/bilibili.svg" alt="" class="loges" />
         </a>
         <p class="f16 ceeeeee">Bilibili</p>
       </div>
-      <div class="tiles">
+      <div class="tile">
         <a href="https://www.github.com/" target="_blank" aria-label="Github">
-          <img src="./loges/github.svg" alt="" class="loges" />
+          <img src="./imgs/github.svg" alt="" class="loges" />
         </a>
         <p class="f16 ceeeeee">Github</p>
       </div>
-      <div class="tiles" add="add">
+      <div class="tile" add="add">
         <a id="AddTiles" href="#">
           <img src="./imgs/add.svg" alt="添加" class="loges" />
         </a>
