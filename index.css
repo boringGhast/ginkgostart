@@ -97,7 +97,7 @@ time {
   font-size: 3em;
   font-weight: 300;
   color: var(--timeColor);
-  text-shadow: 3px 3px 7px #00000055, -5px -5px 10px #ffffff99;
+  text-shadow: 3px 3px 7px #00000055, -3px -3px 8px #ffffff55;
 }
 
 .search-box {
