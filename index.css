@@ -9,7 +9,7 @@
     url("iconfont.woff?t=1654263403269") format("woff"),
     url("iconfont.ttf?t=1654263403269") format("truetype"),
     url("iconfont.svg?t=1654263403269#iconfont") format("svg");
-  font-display: swap;
+  font-display: fallback;
 }
 
 :root {
