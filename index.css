@@ -5,10 +5,10 @@
 
 @font-face {
   font-family: "iconfont", "Microsoft Yahei";
-  src: url("iconfont.woff2?t=1654263403269") format("woff2"),
-    url("iconfont.woff?t=1654263403269") format("woff"),
-    url("iconfont.ttf?t=1654263403269") format("truetype"),
+  src: url("iconfont.ttf?t=1654263403269") format("truetype"),
     url("iconfont.svg?t=1654263403269#iconfont") format("svg");
+  /* url("iconfont.woff2?t=1654263403269") format("woff2"), */
+  /* url("iconfont.woff?t=1654263403269") format("woff"),  */
   font-display: fallback;
 }
 
@@ -29,7 +29,7 @@ body {
   flex-direction: column;
   min-height: 100vh;
   font-family: var(--fonts-light);
-  background-color: #00cec9;
+  background-color: #11b0ae;
   background-position: 50% 50%;
   transition: all 0.5s;
   overflow-x: hidden;
@@ -99,7 +99,7 @@ time {
   font-size: 3em;
   font-weight: 300;
   color: var(--timeColor);
-  text-shadow: 5px 5px 10px #00000055, -5px -5px 10px #ffffffaa;
+  text-shadow: 3px 3px 7px #00000055, -5px -5px 10px #ffffff99;
 }
 
 .search-box {
