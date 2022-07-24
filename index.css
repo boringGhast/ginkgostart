@@ -7,8 +7,6 @@
   font-family: "iconfont", "Microsoft Yahei";
   src: url("iconfont.ttf?t=1654263403269") format("truetype"),
     url("iconfont.svg?t=1654263403269#iconfont") format("svg");
-  /* url("iconfont.woff2?t=1654263403269") format("woff2"), */
-  /* url("iconfont.woff?t=1654263403269") format("woff"),  */
   font-display: fallback;
 }
 
