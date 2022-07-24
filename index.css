@@ -27,7 +27,7 @@ body {
   flex-direction: column;
   min-height: 100vh;
   font-family: var(--fonts-light);
-  background-color: #11b0ae;
+  background-color: #0d6766;
   background-position: 50% 50%;
   transition: all 0.5s;
   overflow-x: hidden;
